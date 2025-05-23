@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Embedding Vega-Lite</title>
+        <script src="https://cdn.jsdelivr.net/npm/vega@6.0.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.1.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.29.0"></script>
+    </head>
+    <body>
+        <div id="vis"></div>
+
+        <script type="text/javascript">
+            var vl = {
+                $schema: "https://vega.github.io/schema/vega-lite/v6.json",
+                data: { format: {type : "csv"}, url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTV0B3sR4We5c769vUD83WEvZmCoyVC8Nye01uWKsBEM-5lQaTIcsxnH4tkg8VV31IJfhiGFPWkwZAS/pub?gid=197919290&single=true&output=csv" },
+                mark: { type: "bar", tooltip: true },
+                encoding: {
+                    color : {"field": "barrio"},
+                    x: {
+                        bin: true,
+                        field: "precio_x_m2",
+                    },
+                    y: { aggregate: "count" },
+                },
+            };
+            vegaEmbed("#vis", vl);
+        </script>
+    </body>
+</html>
